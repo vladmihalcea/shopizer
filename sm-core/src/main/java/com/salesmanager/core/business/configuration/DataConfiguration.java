@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.hibernate.dialect.H2Dialect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.cache.annotation.EnableCaching;
@@ -109,9 +110,22 @@ public class DataConfiguration {
         hibernateProperties.setProperty("hibernate.connection.CharSet", "utf8");
         hibernateProperties.setProperty("hibernate.connection.characterEncoding", "utf8");
         hibernateProperties.setProperty("hibernate.connection.useUnicode", "true");
-        hibernateProperties.setProperty("hibernate.id.new_generator_mappings", "false"); //unless you run on a new schema
         hibernateProperties.setProperty("hibernate.generate_statistics", "false");
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
+
+        if (H2Dialect.class.getName().equals(dialect)) {
+            hibernateProperties.setProperty("hibernate.jdbc.fetch_size", "500");
+        }
+        hibernateProperties.setProperty("hibernate.jdbc.time_zone", "UTC");
+        hibernateProperties.setProperty("hibernate.jdbc.batch_size", "15");
+        hibernateProperties.setProperty("hibernate.order_inserts", "true");
+        hibernateProperties.setProperty("hibernate.order_updates", "true");
+        hibernateProperties.setProperty("hibernate.connection.provider_disables_autocommit", "true");
+        hibernateProperties.setProperty("hibernate.query.in_clause_parameter_padding", "true");
+        hibernateProperties.setProperty("hibernate.query.fail_on_pagination_over_collection_fetch", "true");
+        hibernateProperties.setProperty("hibernate.query.plan_cache_max_size", "4096");
+        hibernateProperties.setProperty("hibernate.show_sql", "false");
+
         return hibernateProperties;
     }
 

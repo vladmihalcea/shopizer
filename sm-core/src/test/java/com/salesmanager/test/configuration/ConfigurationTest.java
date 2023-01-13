@@ -2,12 +2,11 @@ package com.salesmanager.test.configuration;
 
 import io.hypersistence.optimizer.HypersistenceOptimizer;
 import io.hypersistence.optimizer.core.config.JpaConfig;
+import io.hypersistence.optimizer.hibernate.event.configuration.identifier.PooledSequenceOptimizerEvent;
+import io.hypersistence.optimizer.hibernate.event.configuration.schema.SchemaGenerationEvent;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.persistence.EntityManagerFactory;
@@ -26,6 +25,13 @@ public class ConfigurationTest {
             new JpaConfig(
                 entityManagerFactory
             )
+            .setEventFilter(event -> {
+                if(event instanceof SchemaGenerationEvent ||
+                   event instanceof PooledSequenceOptimizerEvent) {
+                    return false;
+                }
+                return true;
+            })
         );
     }
 

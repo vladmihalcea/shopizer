@@ -1,16 +1,16 @@
 package com.salesmanager.shop.application.config;
 
-import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM;
-import static org.springframework.http.MediaType.IMAGE_GIF;
-import static org.springframework.http.MediaType.IMAGE_JPEG;
-import static org.springframework.http.MediaType.IMAGE_PNG;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-
+import com.salesmanager.core.business.configuration.CoreApplicationConfiguration;
+import com.salesmanager.shop.filter.CorsFilter;
+import com.salesmanager.shop.filter.XssFilter;
+import com.salesmanager.shop.utils.LabelUtils;
 import io.hypersistence.optimizer.HypersistenceOptimizer;
 import io.hypersistence.optimizer.core.config.JpaConfig;
+import io.hypersistence.optimizer.core.event.Event;
+import io.hypersistence.optimizer.hibernate.event.configuration.ConfigurationPropertyEvent;
+import io.hypersistence.optimizer.hibernate.event.configuration.identifier.PooledSequenceOptimizerEvent;
+import io.hypersistence.optimizer.hibernate.event.configuration.schema.SchemaGenerationEvent;
+import io.hypersistence.optimizer.hibernate.event.mapping.EntityMappingEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -33,12 +33,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import com.salesmanager.core.business.configuration.CoreApplicationConfiguration;
-import com.salesmanager.shop.filter.CorsFilter;
-import com.salesmanager.shop.filter.XssFilter;
-import com.salesmanager.shop.utils.LabelUtils;
-
 import javax.persistence.EntityManagerFactory;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+import static org.junit.Assert.assertTrue;
+import static org.springframework.http.MediaType.*;
 
 @Configuration
 @ComponentScan({"com.salesmanager.shop"})
@@ -154,11 +155,43 @@ public class ShopApplicationConfiguration implements WebMvcConfigurer {
 
   @Bean
   public HypersistenceOptimizer hypersistenceOptimizer(EntityManagerFactory entityManagerFactory) {
-    return new HypersistenceOptimizer(
+    HypersistenceOptimizer hypersistenceOptimizer = new HypersistenceOptimizer(
         new JpaConfig(
             entityManagerFactory
         )
+        .setEventFilter(event -> {
+          if (event instanceof SchemaGenerationEvent ||
+              event instanceof PooledSequenceOptimizerEvent) {
+            return false;
+          }
+          return true;
+        })
     );
+
+    List<Event> events = hypersistenceOptimizer.getEvents();
+
+    List<Event> configurationPropertyEvents = events.stream()
+        .filter(event -> event instanceof ConfigurationPropertyEvent)
+        .collect(toList());
+
+    assertTrue(configurationPropertyEvents.isEmpty());
+
+    Map<Class, List<Event>> entityMappingEventByEventTypeMap = events.stream()
+        .filter(event -> event instanceof EntityMappingEvent)
+        .map(e -> EntityMappingEvent.class.cast(e))
+        .collect(Collectors.groupingBy(Event::getClass));
+
+    //assertTrue(entityMappingEventByEventTypeMap.isEmpty());
+
+    Map<Class, List<Event>> entityMappingEventByEntityClassTypeMap = events.stream()
+        .filter(event -> event instanceof EntityMappingEvent)
+        .map(e -> EntityMappingEvent.class.cast(e))
+        .sorted(Comparator.comparing(EntityMappingEvent::getEntityName))
+        .collect(Collectors.groupingBy(e -> e.getEntityClass(), () -> new LinkedHashMap<Class, List<Event>>(), toList()));
+
+    //assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
+
+    return hypersistenceOptimizer;
   }
 
 }

@@ -36,6 +36,7 @@ import com.salesmanager.core.model.shoppingcart.ShoppingCartItem;
 import com.salesmanager.core.business.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -62,13 +63,23 @@ public class ShoppingCartTest extends com.salesmanager.test.common.AbstractSales
 			.filter(event -> event instanceof ConfigurationPropertyEvent)
 			.collect(Collectors.toList());
 
-		List<Event> entityMappingEvents = events.stream()
+		assertTrue(configurationPropertyEvents.isEmpty());
+
+		Map<Class, List<Event>> entityMappingEventByEventTypeMap = events.stream()
+			.filter(event -> event instanceof EntityMappingEvent)
+			.map(e -> EntityMappingEvent.class.cast(e))
+			.collect(Collectors.groupingBy(Event::getClass));
+
+		//assertTrue(entityMappingEventByEventTypeMap.isEmpty());
+
+		Map<Class, List<Event>> entityMappingEventByEntityClassTypeMap = events.stream()
 			.filter(event -> event instanceof EntityMappingEvent)
 			.map(e -> EntityMappingEvent.class.cast(e))
 			.sorted(Comparator.comparing(EntityMappingEvent::getEntityName))
-			.collect(Collectors.toList());
+			.collect(Collectors.groupingBy(e -> e.getEntityClass(), () -> new LinkedHashMap<Class, List<Event>>(), toList()));
 
-		//assertTrue(events.isEmpty());
+		//assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
+
 		hypersistenceOptimizer.getEvents().clear();
 
 		super.init();
