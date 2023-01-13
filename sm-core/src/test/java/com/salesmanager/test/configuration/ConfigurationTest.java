@@ -1,11 +1,16 @@
 package com.salesmanager.test.configuration;
 
+import io.hypersistence.optimizer.HypersistenceOptimizer;
+import io.hypersistence.optimizer.core.config.JpaConfig;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import javax.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableAutoConfiguration
@@ -14,7 +19,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "com.salesmanager.core.business.repositories")
 @EntityScan(basePackages = "com.salesmanager.core.model")
 public class ConfigurationTest {
-	
-	
+
+    @Bean
+	public HypersistenceOptimizer hypersistenceOptimizer(EntityManagerFactory entityManagerFactory) {
+        return new HypersistenceOptimizer(
+            new JpaConfig(
+                entityManagerFactory
+            )
+        );
+    }
 
 }

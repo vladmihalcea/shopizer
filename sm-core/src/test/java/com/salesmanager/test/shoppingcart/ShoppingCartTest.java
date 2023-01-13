@@ -1,11 +1,13 @@
 package com.salesmanager.test.shoppingcart;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import io.hypersistence.optimizer.HypersistenceOptimizer;
+import io.hypersistence.optimizer.core.event.Event;
+import io.hypersistence.optimizer.hibernate.event.configuration.ConfigurationPropertyEvent;
+import io.hypersistence.optimizer.hibernate.event.mapping.EntityMappingEvent;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,7 +33,11 @@ import com.salesmanager.core.model.reference.language.Language;
 import com.salesmanager.core.model.shoppingcart.ShoppingCart;
 import com.salesmanager.core.model.shoppingcart.ShoppingCartAttributeItem;
 import com.salesmanager.core.model.shoppingcart.ShoppingCartItem;
+import com.salesmanager.core.business.exception.ServiceException;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 
 /**
@@ -44,8 +50,36 @@ import com.salesmanager.core.model.shoppingcart.ShoppingCartItem;
  *
  */
 public class ShoppingCartTest extends com.salesmanager.test.common.AbstractSalesManagerCoreTestCase {
-	
 
+	@Autowired
+	private HypersistenceOptimizer hypersistenceOptimizer;
+
+	@Override
+	public void init() throws ServiceException {
+		List<Event> events = hypersistenceOptimizer.getEvents();
+
+		List<Event> configurationPropertyEvents = events.stream()
+			.filter(event -> event instanceof ConfigurationPropertyEvent)
+			.collect(Collectors.toList());
+
+		List<Event> entityMappingEvents = events.stream()
+			.filter(event -> event instanceof EntityMappingEvent)
+			.map(e -> EntityMappingEvent.class.cast(e))
+			.sorted(Comparator.comparing(EntityMappingEvent::getEntityName))
+			.collect(Collectors.toList());
+
+		//assertTrue(events.isEmpty());
+		hypersistenceOptimizer.getEvents().clear();
+
+		super.init();
+	}
+
+	@Test
+	public void performanceIssuesTest() {
+		List<Event> events = hypersistenceOptimizer.getEvents();
+
+		//assertTrue(events.isEmpty());
+	}
 
 	@Test
 	public void createShoppingCart() throws Exception {

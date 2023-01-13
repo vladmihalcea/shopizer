@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import io.hypersistence.optimizer.HypersistenceOptimizer;
+import io.hypersistence.optimizer.core.config.JpaConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -35,6 +37,8 @@ import com.salesmanager.core.business.configuration.CoreApplicationConfiguration
 import com.salesmanager.shop.filter.CorsFilter;
 import com.salesmanager.shop.filter.XssFilter;
 import com.salesmanager.shop.utils.LabelUtils;
+
+import javax.persistence.EntityManagerFactory;
 
 @Configuration
 @ComponentScan({"com.salesmanager.shop"})
@@ -146,6 +150,15 @@ public class ShopApplicationConfiguration implements WebMvcConfigurer {
   @Bean
   public LabelUtils messages() {
     return new LabelUtils();
+  }
+
+  @Bean
+  public HypersistenceOptimizer hypersistenceOptimizer(EntityManagerFactory entityManagerFactory) {
+    return new HypersistenceOptimizer(
+        new JpaConfig(
+            entityManagerFactory
+        )
+    );
   }
 
 }
