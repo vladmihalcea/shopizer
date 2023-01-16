@@ -8,6 +8,7 @@ import io.hypersistence.optimizer.HypersistenceOptimizer;
 import io.hypersistence.optimizer.core.event.Event;
 import io.hypersistence.optimizer.hibernate.event.configuration.ConfigurationPropertyEvent;
 import io.hypersistence.optimizer.hibernate.event.mapping.EntityMappingEvent;
+import io.hypersistence.optimizer.hibernate.event.mapping.association.fetching.EagerFetchingEvent;
 import io.hypersistence.optimizer.hibernate.event.mapping.identifier.TableGeneratorEvent;
 import org.junit.Assert;
 import org.junit.Test;
@@ -81,6 +82,7 @@ public class ShoppingCartTest extends com.salesmanager.test.common.AbstractSales
 		//assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
 
 		assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(TableGeneratorEvent.class));
+		assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(EagerFetchingEvent.class));
 
 		hypersistenceOptimizer.getEvents().clear();
 

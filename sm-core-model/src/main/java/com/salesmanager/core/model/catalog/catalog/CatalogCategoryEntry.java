@@ -33,11 +33,11 @@ public class CatalogCategoryEntry extends SalesManagerEntity<Long, CatalogCatego
 	sequenceName = "CATALOG_ENT_SEQ_NEXT_VAL")
 	private Long id;
  
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID", nullable = false)
     Category category;
     
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATALOG_ID", nullable = false)
 	private Catalog catalog;
 	

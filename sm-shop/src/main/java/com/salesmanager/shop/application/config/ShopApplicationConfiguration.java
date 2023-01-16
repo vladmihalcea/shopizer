@@ -11,6 +11,7 @@ import io.hypersistence.optimizer.hibernate.event.configuration.ConfigurationPro
 import io.hypersistence.optimizer.hibernate.event.configuration.identifier.PooledSequenceOptimizerEvent;
 import io.hypersistence.optimizer.hibernate.event.configuration.schema.SchemaGenerationEvent;
 import io.hypersistence.optimizer.hibernate.event.mapping.EntityMappingEvent;
+import io.hypersistence.optimizer.hibernate.event.mapping.association.fetching.EagerFetchingEvent;
 import io.hypersistence.optimizer.hibernate.event.mapping.identifier.TableGeneratorEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -194,6 +195,7 @@ public class ShopApplicationConfiguration implements WebMvcConfigurer {
     //assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
 
     assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(TableGeneratorEvent.class));
+    assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(EagerFetchingEvent.class));
 
     return hypersistenceOptimizer;
   }

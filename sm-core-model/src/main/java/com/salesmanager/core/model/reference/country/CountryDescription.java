@@ -1,12 +1,7 @@
 package com.salesmanager.core.model.reference.country;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.constants.SchemaConstant;
@@ -27,7 +22,7 @@ public class CountryDescription extends Description {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonIgnore
-	@ManyToOne(targetEntity = Country.class)
+	@ManyToOne(targetEntity = Country.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "COUNTRY_ID", nullable = false)
 	private Country country;
 	

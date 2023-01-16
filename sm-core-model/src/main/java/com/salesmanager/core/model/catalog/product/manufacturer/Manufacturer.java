@@ -46,7 +46,7 @@ public class Manufacturer extends SalesManagerEntity<Long, Manufacturer> impleme
 	@Embedded
 	private AuditSection auditSection = new AuditSection();
 	
-	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL , fetch = FetchType.LAZY)
 	private Set<ManufacturerDescription> descriptions = new HashSet<ManufacturerDescription>();
 	
 	@Column(name = "MANUFACTURER_IMAGE")
@@ -55,7 +55,7 @@ public class Manufacturer extends SalesManagerEntity<Long, Manufacturer> impleme
 	@Column(name="SORT_ORDER")
 	private Integer order = new Integer(0);
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="MERCHANT_ID", nullable=false)
 	private MerchantStore merchantStore;
 	

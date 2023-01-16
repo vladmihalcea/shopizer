@@ -38,7 +38,7 @@ public class ProductVariantImage extends SalesManagerEntity<Long, ProductVariant
 	@Column(name = "DEFAULT_IMAGE")
 	private boolean defaultImage = true;
 	
-	@ManyToOne(targetEntity = ProductVariantGroup.class)
+	@ManyToOne(targetEntity = ProductVariantGroup.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_VARIANT_GROUP_ID", nullable = false)
 	private ProductVariantGroup productVariantGroup;
 	

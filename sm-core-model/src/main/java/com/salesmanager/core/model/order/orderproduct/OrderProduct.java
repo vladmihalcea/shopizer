@@ -4,17 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
@@ -44,7 +34,7 @@ public class OrderProduct extends SalesManagerEntity<Long, OrderProduct> {
 	private BigDecimal oneTimeCharge;
 
 	@JsonIgnore
-	@ManyToOne(targetEntity = Order.class)
+	@ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ORDER_ID", nullable = false)
 	private Order order;
 

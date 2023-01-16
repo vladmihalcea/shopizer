@@ -55,7 +55,7 @@ public class CustomerOptin extends SalesManagerEntity<Long, CustomerOptin> imple
 	private Date optinDate;
 
 	
-	@ManyToOne(targetEntity = Optin.class)
+	@ManyToOne(targetEntity = Optin.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="OPTIN_ID")
 	private Optin optin;
 	

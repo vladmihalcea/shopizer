@@ -1,11 +1,6 @@
 package com.salesmanager.core.model.catalog.product.attribute;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.constants.SchemaConstant;
@@ -25,7 +20,7 @@ public class ProductOptionValueDescription extends Description {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonIgnore
-	@ManyToOne(targetEntity = ProductOptionValue.class)
+	@ManyToOne(targetEntity = ProductOptionValue.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_OPTION_VALUE_ID")
 	private ProductOptionValue productOptionValue;
 	

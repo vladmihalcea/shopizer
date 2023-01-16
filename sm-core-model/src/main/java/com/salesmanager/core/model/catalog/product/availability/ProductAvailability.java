@@ -76,7 +76,7 @@ public class ProductAvailability extends SalesManagerEntity<Long, ProductAvailab
 	private Long id;
 
 	@JsonIgnore
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID", nullable = false)
 	private Product product;
 
@@ -88,7 +88,7 @@ public class ProductAvailability extends SalesManagerEntity<Long, ProductAvailab
 	/**
 	 * This describes the availability of a product variant
 	 */
-	@ManyToOne(targetEntity = ProductVariant.class)
+	@ManyToOne(targetEntity = ProductVariant.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_VARIANT", nullable = true)
 	private ProductVariant productVariant;
 	

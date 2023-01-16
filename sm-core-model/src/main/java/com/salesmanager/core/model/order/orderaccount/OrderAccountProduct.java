@@ -31,7 +31,7 @@ public class OrderAccountProduct implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long orderAccountProductId;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ORDER_ACCOUNT_ID" , nullable=false)
 	private OrderAccount orderAccount;
 	

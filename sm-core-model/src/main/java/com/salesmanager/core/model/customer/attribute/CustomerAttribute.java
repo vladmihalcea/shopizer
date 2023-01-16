@@ -49,7 +49,7 @@ public class CustomerAttribute extends SalesManagerEntity<Long, CustomerAttribut
 	private String textValue;
 
 	@JsonIgnore
-	@ManyToOne(targetEntity = Customer.class)
+	@ManyToOne(targetEntity = Customer.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CUSTOMER_ID", nullable = false)
 	private Customer customer;
 	

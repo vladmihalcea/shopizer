@@ -1,13 +1,7 @@
 package com.salesmanager.core.model.customer.attribute;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Type;
 
@@ -27,7 +21,7 @@ import com.salesmanager.core.model.common.description.Description;
 public class CustomerOptionDescription extends Description {
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne(targetEntity = CustomerOption.class)
+	@ManyToOne(targetEntity = CustomerOption.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CUSTOMER_OPTION_ID", nullable = false)
 	private CustomerOption customerOption;
 

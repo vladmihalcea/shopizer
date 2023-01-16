@@ -84,7 +84,7 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 	@Column(name = "PIGGYBACK")
 	private boolean piggyback;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TAX_CLASS_ID" , nullable=false)
 	private TaxClass taxClass;
 	
@@ -109,7 +109,7 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 	@Column(name = "STORE_STATE_PROV", length=100)
 	private String stateProvince;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PARENT_ID")
 	private TaxRate parent;
 	

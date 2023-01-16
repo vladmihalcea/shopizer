@@ -1,15 +1,6 @@
 package com.salesmanager.core.model.catalog.product.file;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.catalog.product.Product;
@@ -37,7 +28,7 @@ public class DigitalProduct extends SalesManagerEntity<Long, DigitalProduct> {
 	private Long id;
 	
 	
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID", nullable = false)
 	private Product product;
 

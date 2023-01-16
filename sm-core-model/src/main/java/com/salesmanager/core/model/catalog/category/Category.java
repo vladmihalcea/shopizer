@@ -42,7 +42,7 @@ public class Category extends SalesManagerEntity<Long, Category> implements Audi
     @JoinColumn(name="MERCHANT_ID", nullable=false)
     private MerchantStore merchantStore;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
     

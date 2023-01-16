@@ -121,7 +121,7 @@ public class ProductAttribute extends SalesManagerEntity<Long, ProductAttribute>
 	}
 
 
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID", nullable = false)
 	private Product product;
 	

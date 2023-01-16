@@ -75,7 +75,7 @@ public class MerchantStore extends SalesManagerEntity<Integer, MerchantStore> im
 	private AuditSection auditSection = new AuditSection();
 
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PARENT_ID")
 	private MerchantStore parent;
 

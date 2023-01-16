@@ -58,7 +58,7 @@ public class ProductImage extends SalesManagerEntity<Long, ProductImage> {
 	@Column(name = "IMAGE_CROP")
 	private boolean imageCrop;
 	
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID", nullable = false)
 	private Product product;
 	

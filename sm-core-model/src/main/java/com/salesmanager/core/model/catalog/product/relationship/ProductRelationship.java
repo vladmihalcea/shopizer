@@ -2,15 +2,7 @@ package com.salesmanager.core.model.catalog.product.relationship;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import com.salesmanager.core.model.catalog.product.Product;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
@@ -27,15 +19,15 @@ public class ProductRelationship extends SalesManagerEntity<Long, ProductRelatio
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 	
-	@ManyToOne(targetEntity = MerchantStore.class)
+	@ManyToOne(targetEntity = MerchantStore.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="MERCHANT_ID",nullable=false)  
 	private MerchantStore store;
 	
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="PRODUCT_ID",updatable=false,nullable=true) 
 	private Product product = null;
 	
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="RELATED_PRODUCT_ID",updatable=false,nullable=true) 
 	private Product relatedProduct = null;
 	

@@ -70,7 +70,7 @@ public class ProductVariant extends SalesManagerEntity<Long, ProductVariant> imp
 	@JoinColumn(name = "PRODUCT_VARIATION_ID", nullable = true)
 	private ProductVariation variation;
 
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID", nullable = false)
 	private Product product;
 	
@@ -89,7 +89,7 @@ public class ProductVariant extends SalesManagerEntity<Long, ProductVariant> imp
 	@Column(name = "SKU")
 	private String sku;
 	
-	@ManyToOne(targetEntity = ProductVariantGroup.class)
+	@ManyToOne(targetEntity = ProductVariantGroup.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_VARIANT_GROUP_ID", nullable = true)
 	private ProductVariantGroup productVariantGroup;
 	

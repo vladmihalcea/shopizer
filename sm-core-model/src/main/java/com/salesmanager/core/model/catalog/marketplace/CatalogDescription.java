@@ -21,7 +21,7 @@ public class CatalogDescription extends Description {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*	@ManyToOne(targetEntity = Catalog.class)
+	/*	@ManyToOne(targetEntity = Catalog.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATALOG_ID", nullable = false)*/
 	private Catalog catalog;
 

@@ -2,17 +2,7 @@ package com.salesmanager.core.model.common.description;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.Type;
@@ -38,7 +28,7 @@ public class Description implements Auditable, Serializable {
 	@Embedded
 	private AuditSection auditSection = new AuditSection();
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "LANGUAGE_ID")
 	private Language language;
 	

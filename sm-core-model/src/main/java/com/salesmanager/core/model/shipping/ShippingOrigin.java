@@ -60,11 +60,11 @@ public class ShippingOrigin extends SalesManagerEntity<Long, ShippingOrigin> {
 	@Column (name ="STATE", length=100)
 	private String state;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Country.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	@JoinColumn(name="COUNTRY_ID", nullable=true)
 	private Country country;
 	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Zone.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Zone.class)
 	@JoinColumn(name="ZONE_ID", nullable=true)
 	private Zone zone;
 

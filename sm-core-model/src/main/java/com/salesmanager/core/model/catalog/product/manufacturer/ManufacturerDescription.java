@@ -2,13 +2,7 @@ package com.salesmanager.core.model.catalog.product.manufacturer;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.constants.SchemaConstant;
@@ -28,7 +22,7 @@ public class ManufacturerDescription extends Description {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonIgnore
-	@ManyToOne(targetEntity = Manufacturer.class)
+	@ManyToOne(targetEntity = Manufacturer.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "MANUFACTURER_ID", nullable = false)
 	private Manufacturer manufacturer;
 	

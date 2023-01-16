@@ -2,14 +2,8 @@ package com.salesmanager.core.model.content;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.UniqueConstraint;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.description.Description;
@@ -34,7 +28,7 @@ public class ContentDescription extends Description implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(targetEntity = Content.class)
+	@ManyToOne(targetEntity = Content.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CONTENT_ID", nullable = false)
 	private Content content;
 

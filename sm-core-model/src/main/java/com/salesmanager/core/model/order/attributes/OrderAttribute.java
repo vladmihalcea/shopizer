@@ -1,14 +1,6 @@
 package com.salesmanager.core.model.order.attributes;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
@@ -40,7 +32,7 @@ public class OrderAttribute extends SalesManagerEntity<Long, OrderAttribute> {
 	@Column (name ="VALUE", nullable=false)
 	private String value;
 	
-	@ManyToOne(targetEntity = Order.class)
+	@ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ORDER_ID", nullable=false)
 	private Order order;
 

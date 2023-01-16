@@ -1,12 +1,6 @@
 package com.salesmanager.core.model.catalog.product.image;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.description.Description;
@@ -23,7 +17,7 @@ import com.salesmanager.core.model.common.description.Description;
 public class ProductImageDescription extends Description {
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne(targetEntity = ProductImage.class)
+	@ManyToOne(targetEntity = ProductImage.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_IMAGE_ID", nullable = false)
 	private ProductImage productImage;
 	

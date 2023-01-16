@@ -72,7 +72,7 @@ public class ProductPrice extends SalesManagerEntity<Long, ProductPrice> {
 	private BigDecimal productPriceSpecialAmount;
 
 	@JsonIgnore
-	@ManyToOne(targetEntity = ProductAvailability.class)
+	@ManyToOne(targetEntity = ProductAvailability.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_AVAIL_ID", nullable = false)
 	private ProductAvailability productAvailability;
 

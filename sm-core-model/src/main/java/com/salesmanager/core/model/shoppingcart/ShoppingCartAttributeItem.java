@@ -1,17 +1,6 @@
 package com.salesmanager.core.model.shoppingcart;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.model.catalog.product.attribute.ProductAttribute;
@@ -49,7 +38,7 @@ public class ShoppingCartAttributeItem extends SalesManagerEntity<Long, Shopping
 	
 
 	@JsonIgnore
-	@ManyToOne(targetEntity = ShoppingCartItem.class)
+	@ManyToOne(targetEntity = ShoppingCartItem.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "SHP_CART_ITEM_ID", nullable = false)
 	private ShoppingCartItem shoppingCartItem;
 	

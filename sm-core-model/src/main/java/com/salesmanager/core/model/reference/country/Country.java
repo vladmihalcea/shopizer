@@ -44,7 +44,7 @@ public class Country extends SalesManagerEntity<Integer, Country> {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "country")
 	private Set<Zone> zones = new HashSet<Zone>();
 	
-	@ManyToOne(targetEntity = GeoZone.class)
+	@ManyToOne(targetEntity = GeoZone.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "GEOZONE_ID")
 	private GeoZone geoZone;
 	

@@ -67,11 +67,11 @@ public class ProductReview extends SalesManagerEntity<Long, ProductReview> imple
 	private Integer status;
 
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="CUSTOMERS_ID")
 	private Customer customer;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="PRODUCT_ID")
 	private Product product;
 

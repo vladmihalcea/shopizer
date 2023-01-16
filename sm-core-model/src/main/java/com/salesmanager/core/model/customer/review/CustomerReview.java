@@ -64,13 +64,13 @@ public class CustomerReview extends SalesManagerEntity<Long, CustomerReview> imp
 	@Column(name = "STATUS")
 	private Integer status;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="CUSTOMERS_ID")
 	private Customer customer;
 	
 
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="REVIEWED_CUSTOMER_ID")
 	private Customer reviewedCustomer;
 

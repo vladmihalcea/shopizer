@@ -46,7 +46,7 @@ public class ShoppingCartItem extends SalesManagerEntity<Long, ShoppingCartItem>
 	private Long id;
 
 	@JsonIgnore
-	@ManyToOne(targetEntity = ShoppingCart.class)
+	@ManyToOne(targetEntity = ShoppingCart.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "SHP_CART_ID", nullable = false)
 	private ShoppingCart shoppingCart;
 
