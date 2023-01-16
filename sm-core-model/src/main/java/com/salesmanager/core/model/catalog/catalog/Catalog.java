@@ -4,21 +4,7 @@ package com.salesmanager.core.model.catalog.catalog;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
@@ -52,16 +38,13 @@ public class Catalog extends SalesManagerEntity<Long, Catalog> implements Audita
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, 
     	generator = "TABLE_GEN")
-  	@TableGenerator(name = "TABLE_GEN", 
-    	table = "SM_SEQUENCER", 
-    	pkColumnName = "SEQ_NAME",
-    	valueColumnName = "SEQ_COUNT",
-    	pkColumnValue = "CATALOG_SEQ_NEXT_VAL",
+  	@SequenceGenerator(name = "TABLE_GEN",
+    	sequenceName = "CATALOG_SEQ_NEXT_VAL",
     	allocationSize = SchemaConstant.DESCRIPTION_ID_ALLOCATION_SIZE, 
     	initialValue = SchemaConstant.DESCRIPTION_ID_START_VALUE
-  		)
+    )
     private Long id;
 
     @Embedded

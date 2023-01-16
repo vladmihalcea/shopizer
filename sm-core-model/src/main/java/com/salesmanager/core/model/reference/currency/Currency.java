@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
@@ -22,8 +22,8 @@ public class Currency extends SalesManagerEntity<Long, Currency> implements Seri
 	
 	@Id
 	@Column(name = "CURRENCY_ID")
-	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "CURRENCY_SEQ_NEXT_VAL")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+	@SequenceGenerator(name = "TABLE_GEN", sequenceName = "CURRENCY_SEQ_NEXT_VAL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 	
 	@Column(name = "CURRENCY_CURRENCY_CODE" ,nullable = false, unique = true)

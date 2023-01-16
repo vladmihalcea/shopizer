@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.constants.SchemaConstant;
@@ -26,8 +26,8 @@ public class GeoZone extends SalesManagerEntity<Long, GeoZone> {
 	
 	@Id
 	@Column(name = "GEOZONE_ID")
-	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "GEOZONE_SEQ_NEXT_VAL")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+	@SequenceGenerator(name = "TABLE_GEN", sequenceName = "GEOZONE_SEQ_NEXT_VAL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 	
 	@OneToMany(mappedBy = "geoZone", cascade = CascadeType.ALL)

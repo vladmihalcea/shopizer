@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.Type;
 
@@ -34,8 +34,8 @@ public class OrderTotal extends SalesManagerEntity<Long, OrderTotal> {
 	
 	@Id
 	@Column(name = "ORDER_ACCOUNT_ID", unique=true, nullable=false)
-	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "ORDER_TOTAL_ID_NEXT_VALUE")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+	@SequenceGenerator(name = "TABLE_GEN", sequenceName = "ORDER_TOTAL_ID_NEXT_VALUE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 	
 	@Column (name ="CODE", nullable=false)

@@ -31,7 +31,7 @@ public class Description implements Auditable, Serializable {
 	
 	@Id
 	@Column(name = "DESCRIPTION_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "description_gen")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "description_gen")
 	private Long id;
 	
 	@JsonIgnore

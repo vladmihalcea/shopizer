@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,8 +30,8 @@ private static final long serialVersionUID = -2429388347536330540L;
 
 	@Id
 	@Column(name = "ORDER_ACCOUNT_ID", unique = true, nullable = false)
-	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "ORDER_ACCOUNT_ID_NEXT_VALUE")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+	@SequenceGenerator(name = "TABLE_GEN", sequenceName = "ORDER_ACCOUNT_ID_NEXT_VALUE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 
 	@ManyToOne

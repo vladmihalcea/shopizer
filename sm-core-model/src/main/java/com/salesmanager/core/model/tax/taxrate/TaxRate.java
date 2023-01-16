@@ -32,7 +32,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
@@ -63,8 +63,8 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 	
 	@Id
 	@Column(name = "TAX_RATE_ID")
-	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "TAX_RATE_ID_NEXT_VALUE")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+	@SequenceGenerator(name = "TABLE_GEN", sequenceName = "TAX_RATE_ID_NEXT_VALUE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 	
 	@Embedded

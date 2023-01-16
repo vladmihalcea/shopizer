@@ -5,7 +5,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,7 +21,7 @@ import com.salesmanager.core.model.common.description.Description;
 	}
 )
 
-@TableGenerator(name = "description_gen", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "customer_option_value_description_seq", allocationSize = SchemaConstant.DESCRIPTION_ID_ALLOCATION_SIZE, initialValue = SchemaConstant.DESCRIPTION_ID_START_VALUE)
+@SequenceGenerator(name = "description_gen", sequenceName = "customer_option_value_description_seq", allocationSize = SchemaConstant.DESCRIPTION_ID_ALLOCATION_SIZE, initialValue = SchemaConstant.DESCRIPTION_ID_START_VALUE)
 //@SequenceGenerator(name = "description_gen", sequenceName = "customer_option_value_description_seq", allocationSize = SchemaConstant.DESCRIPTION_ID_SEQUENCE_START)
 public class CustomerOptionValueDescription extends Description {
 	private static final long serialVersionUID = 1L;

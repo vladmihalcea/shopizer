@@ -17,7 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
@@ -38,11 +38,8 @@ public class ProductVariantGroup extends SalesManagerEntity<Long, ProductVariant
 
 	@Id
 	@Column(name = "PRODUCT_VARIANT_GROUP_ID", unique=true, nullable=false)
-	@TableGenerator(name = "TABLE_GEN", 
-	table = "SM_SEQUENCER", 
-	pkColumnName = "SEQ_NAME", 
-	valueColumnName = "SEQ_COUNT", pkColumnValue = "PRODUCT_VAR_GROUP_SEQ_NEXT_VAL")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+	@SequenceGenerator(name = "TABLE_GEN", sequenceName = "PRODUCT_VAR_GROUP_SEQ_NEXT_VAL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 
 	

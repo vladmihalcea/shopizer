@@ -8,6 +8,7 @@ import io.hypersistence.optimizer.HypersistenceOptimizer;
 import io.hypersistence.optimizer.core.event.Event;
 import io.hypersistence.optimizer.hibernate.event.configuration.ConfigurationPropertyEvent;
 import io.hypersistence.optimizer.hibernate.event.mapping.EntityMappingEvent;
+import io.hypersistence.optimizer.hibernate.event.mapping.identifier.TableGeneratorEvent;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,8 +38,7 @@ import com.salesmanager.core.business.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 
 /**
@@ -79,6 +79,8 @@ public class ShoppingCartTest extends com.salesmanager.test.common.AbstractSales
 			.collect(Collectors.groupingBy(e -> e.getEntityClass(), () -> new LinkedHashMap<Class, List<Event>>(), toList()));
 
 		//assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
+
+		assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(TableGeneratorEvent.class));
 
 		hypersistenceOptimizer.getEvents().clear();
 

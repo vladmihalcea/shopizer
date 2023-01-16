@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 
 import com.salesmanager.core.model.catalog.product.Product;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
@@ -23,8 +23,8 @@ public class ProductRelationship extends SalesManagerEntity<Long, ProductRelatio
 	
 	@Id
 	@Column(name = "PRODUCT_RELATIONSHIP_ID", unique=true, nullable=false)
-	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "PRODUCT_RELATION_SEQ_NEXT_VAL")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+	@SequenceGenerator(name = "TABLE_GEN", sequenceName = "PRODUCT_RELATION_SEQ_NEXT_VAL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 	
 	@ManyToOne(targetEntity = MerchantStore.class)

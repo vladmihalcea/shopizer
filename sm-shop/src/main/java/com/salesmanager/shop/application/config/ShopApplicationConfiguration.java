@@ -11,6 +11,7 @@ import io.hypersistence.optimizer.hibernate.event.configuration.ConfigurationPro
 import io.hypersistence.optimizer.hibernate.event.configuration.identifier.PooledSequenceOptimizerEvent;
 import io.hypersistence.optimizer.hibernate.event.configuration.schema.SchemaGenerationEvent;
 import io.hypersistence.optimizer.hibernate.event.mapping.EntityMappingEvent;
+import io.hypersistence.optimizer.hibernate.event.mapping.identifier.TableGeneratorEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -38,6 +39,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.MediaType.*;
 
@@ -190,6 +192,8 @@ public class ShopApplicationConfiguration implements WebMvcConfigurer {
         .collect(Collectors.groupingBy(e -> e.getEntityClass(), () -> new LinkedHashMap<Class, List<Event>>(), toList()));
 
     //assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
+
+    assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(TableGeneratorEvent.class));
 
     return hypersistenceOptimizer;
   }

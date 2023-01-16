@@ -20,7 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
@@ -56,13 +56,10 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 
 	@Id
 	@Column(name = "PRODUCT_ID", unique=true, nullable=false)
-	@TableGenerator(
+	@SequenceGenerator(
 		 name = "TABLE_GEN", 
-		 table = "SM_SEQUENCER", 
-		 pkColumnName = "SEQ_NAME", 
-		 valueColumnName = "SEQ_COUNT", 
-		 pkColumnValue = "PRODUCT_SEQ_NEXT_VAL")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+		 sequenceName = "PRODUCT_SEQ_NEXT_VAL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 
 	@Embedded

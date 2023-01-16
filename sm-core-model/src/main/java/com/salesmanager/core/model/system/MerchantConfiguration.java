@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Type;
 import com.salesmanager.core.constants.SchemaConstant;
@@ -44,9 +44,8 @@ public class MerchantConfiguration extends SalesManagerEntity<Long, MerchantConf
 
   @Id
   @Column(name = "MERCHANT_CONFIG_ID")
-  @TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME",
-      valueColumnName = "SEQ_COUNT", pkColumnValue = "MERCH_CONF_SEQ_NEXT_VAL")
-  @GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+  @SequenceGenerator(name = "TABLE_GEN", sequenceName = "MERCH_CONF_SEQ_NEXT_VAL")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
   private Long id;
 
   @ManyToOne(fetch = FetchType.LAZY)

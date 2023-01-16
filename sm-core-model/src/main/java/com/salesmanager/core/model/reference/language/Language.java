@@ -15,7 +15,7 @@ import javax.persistence.Index;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.constants.SchemaConstant;
@@ -36,9 +36,8 @@ public class Language extends SalesManagerEntity<Integer, Language> implements A
 
   @Id
   @Column(name = "LANGUAGE_ID")
-  @TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME",
-      valueColumnName = "SEQ_COUNT", pkColumnValue = "LANG_SEQ_NEXT_VAL")
-  @GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+  @SequenceGenerator(name = "TABLE_GEN", sequenceName = "LANG_SEQ_NEXT_VAL")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
   private Integer id;
   
   @JsonIgnore
