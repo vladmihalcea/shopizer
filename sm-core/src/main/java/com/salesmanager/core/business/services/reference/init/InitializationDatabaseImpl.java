@@ -1,11 +1,7 @@
 package com.salesmanager.core.business.services.reference.init;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -384,7 +380,7 @@ public class InitializationDatabaseImpl implements InitializationDatabase {
 		Currency currency = currencyService.getByCode("CAD");
 		Zone qc = zoneService.getByCode("QC");
 		
-		List<Language> supportedLanguages = new ArrayList<Language>();
+		Set<Language> supportedLanguages = new LinkedHashSet<>();
 		supportedLanguages.add(en);
 		
 		//create a merchant

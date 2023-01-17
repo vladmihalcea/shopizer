@@ -7,10 +7,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -267,7 +264,7 @@ public class ProductNextGenTest extends com.salesmanager.test.common.AbstractSal
 		possibleSizes.setOption(size);
 		
 		
-		List<ProductOptionValue> values = new ArrayList<ProductOptionValue>();
+		Set<ProductOptionValue> values = new LinkedHashSet<>();
 		values.add(nine);
 		values.add(ten);
 		

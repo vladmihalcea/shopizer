@@ -1,9 +1,6 @@
 package com.salesmanager.shop.store.security.admin;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.inject.Inject;
 
@@ -88,7 +85,7 @@ public class JWTAdminServicesImpl implements UserDetailsService{
 			authorities.add(role); 
 			
 			List<Integer> groupsId = new ArrayList<Integer>();
-			List<Group> groups = user.getGroups();
+			Set<Group> groups = user.getGroups();
 			for(Group group : groups) {
 				groupsId.add(group.getId());
 			}

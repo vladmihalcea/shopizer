@@ -1,7 +1,9 @@
 package com.salesmanager.core.model.reference.language;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -57,7 +59,7 @@ public class Language extends SalesManagerEntity<Integer, Language> implements A
 
   @JsonIgnore
   @ManyToMany(mappedBy = "languages", targetEntity = MerchantStore.class, fetch = FetchType.LAZY)
-  private List<MerchantStore> stores = new ArrayList<MerchantStore>();
+  private Set<MerchantStore> stores = new HashSet<>();
 
   public Language() {}
 

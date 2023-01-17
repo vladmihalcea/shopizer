@@ -3,6 +3,7 @@ package com.salesmanager.shop.store.security;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
@@ -69,7 +70,7 @@ public abstract class AbstractCustomerServices implements UserDetailsService{
 			authorities.add(role); 
 			
 			List<Integer> groupsId = new ArrayList<Integer>();
-			List<Group> groups = user.getGroups();
+			Set<Group> groups = user.getGroups();
 			for(Group group : groups) {
 				groupsId.add(group.getId());
 			}

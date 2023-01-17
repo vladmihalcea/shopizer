@@ -62,7 +62,7 @@ public class PersistableProductOptionSetMapper implements Mapper<PersistableProd
 		destination.setOption(option);
 		
 		if(!CollectionUtils.isEmpty(source.getOptionValues())) {
-			List<ProductOptionValue> values = source.getOptionValues().stream().map(id -> value(id, store)).collect(Collectors.toList());
+			Set<ProductOptionValue> values = source.getOptionValues().stream().map(id -> value(id, store)).collect(Collectors.toSet());
 			destination.setValues(values);
 		}
 		

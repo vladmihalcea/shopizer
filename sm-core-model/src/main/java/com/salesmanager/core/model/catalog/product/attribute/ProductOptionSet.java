@@ -64,7 +64,7 @@ public class ProductOptionSet extends SalesManagerEntity<Long, ProductOptionSet>
 	
 	@ManyToMany(fetch = FetchType.LAZY, targetEntity=ProductOptionValue.class)
 	@JoinTable(name = "PRODUCT_OPT_SET_OPT_VALUE")
-	private List<ProductOptionValue> values = new ArrayList<ProductOptionValue>();
+	private Set<ProductOptionValue> values = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, targetEntity=ProductType.class)
 	@JoinTable(name = "PRODUCT_OPT_SET_PRD_TYPE")
@@ -84,10 +84,10 @@ public class ProductOptionSet extends SalesManagerEntity<Long, ProductOptionSet>
 	public void setOption(ProductOption option) {
 		this.option = option;
 	}
-	public List<ProductOptionValue> getValues() {
+	public Set<ProductOptionValue> getValues() {
 		return values;
 	}
-	public void setValues(List<ProductOptionValue> values) {
+	public void setValues(Set<ProductOptionValue> values) {
 		this.values = values;
 	}
 	public MerchantStore getStore() {

@@ -1,11 +1,7 @@
 package com.salesmanager.core.model.customer;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -142,7 +138,7 @@ public class Customer extends SalesManagerEntity<Long, Customer> implements Audi
 		org.hibernate.annotations.CascadeType.REPLICATE
 		
 	})
-	private List<Group> groups = new ArrayList<Group>();
+	private Set<Group> groups = new HashSet<>();
 	
 	@JsonIgnore
 	@Transient
@@ -257,11 +253,11 @@ public class Customer extends SalesManagerEntity<Long, Customer> implements Audi
 		return billing;
 	}
 
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
+	public void setGroups(Collection<Group> groups) {
+		this.groups = groups instanceof Set ? (Set<Group>) groups : new HashSet<>(groups);
 	}
 
-	public List<Group> getGroups() {
+	public Set<Group> getGroups() {
 		return groups;
 	}
 	public String getShowCustomerStateList() {

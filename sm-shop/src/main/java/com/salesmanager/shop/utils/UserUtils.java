@@ -4,6 +4,7 @@ import com.salesmanager.core.model.user.Group;
 import com.salesmanager.core.model.user.User;
 
 import java.util.List;
+import java.util.Set;
 
 public class UserUtils {
 	
@@ -11,7 +12,7 @@ public class UserUtils {
 		
 		
 		
-		List<Group> logedInUserGroups = user.getGroups();
+		Set<Group> logedInUserGroups = user.getGroups();
 		for(Group group : logedInUserGroups) {
 			if(group.getGroupName().equals(groupName)) {
 				return true;

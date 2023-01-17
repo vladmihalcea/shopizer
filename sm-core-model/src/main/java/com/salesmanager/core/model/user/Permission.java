@@ -1,7 +1,6 @@
 package com.salesmanager.core.model.user;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -50,7 +49,7 @@ public class Permission extends SalesManagerEntity<Integer, Permission> implemen
 	private String permissionName;
 
 	@ManyToMany(mappedBy = "permissions")
-	private List<Group> groups = new ArrayList<Group>();
+	private Set<Group> groups = new HashSet<>();
 	
 	@Embedded
 	private AuditSection auditSection = new AuditSection();
@@ -85,12 +84,11 @@ public class Permission extends SalesManagerEntity<Integer, Permission> implemen
 	public void setPermissionName(String permissionName) {
 		this.permissionName = permissionName;
 	}
-	
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
-	}
 
-	public List<Group> getGroups() {
+	public void setGroups(Collection<Group> groups) {
+		this.groups = groups instanceof Set ? (Set<Group>) groups : new HashSet<>(groups);
+	}
+	public Set<Group> getGroups() {
 		return groups;
 	}
 

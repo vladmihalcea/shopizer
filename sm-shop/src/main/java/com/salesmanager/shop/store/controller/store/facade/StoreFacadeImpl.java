@@ -1,9 +1,6 @@
 package com.salesmanager.shop.store.controller.store.facade;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -558,7 +555,7 @@ public class StoreFacadeImpl implements StoreFacade {
 	}
 
 	@Override
-	public List<Language> supportedLanguages(MerchantStore store) {
+	public Set<Language> supportedLanguages(MerchantStore store) {
 		
 		Validate.notNull(store, "MerchantStore cannot be null");
 		Validate.notNull(store.getClass(), "MerchantStore code cannot be null");
@@ -578,7 +575,7 @@ public class StoreFacadeImpl implements StoreFacade {
 			return store.getLanguages();
 		}
 		
-		return Collections.emptyList();
+		return Collections.emptySet();
 	}
 
 }

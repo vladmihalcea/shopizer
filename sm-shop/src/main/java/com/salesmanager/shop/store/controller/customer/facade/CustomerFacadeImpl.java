@@ -3,13 +3,7 @@
  */
 package com.salesmanager.shop.store.controller.customer.facade;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import org.apache.commons.collections4.CollectionUtils;
@@ -435,7 +429,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
                                                                                               // login
     authorities.add(role);
     List<Integer> groupsId = new ArrayList<Integer>();
-    List<Group> groups = customer.getGroups();
+    Set<Group> groups = customer.getGroups();
     if (groups != null) {
       for (Group group : groups) {
         groupsId.add(group.getId());

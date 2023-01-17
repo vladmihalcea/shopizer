@@ -1,6 +1,7 @@
 package com.salesmanager.shop.store.controller.store.facade;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,7 +36,7 @@ public interface StoreFacade {
 
 	MerchantStore getByCode(String code);
 	
-	List<Language> supportedLanguages(MerchantStore store);
+	Set<Language> supportedLanguages(MerchantStore store);
 
 	ReadableMerchantStore getByCode(String code, String lang);
 

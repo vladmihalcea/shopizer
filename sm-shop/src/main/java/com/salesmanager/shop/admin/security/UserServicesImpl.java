@@ -26,6 +26,7 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -82,12 +83,12 @@ public class UserServicesImpl implements WebUserServices{
 			authorities.add(role);
 	
 			List<Integer> groupsId = new ArrayList<Integer>();
-			List<Group> groups = user.getGroups();
+			Set<Group> groups = user.getGroups();
 			for(Group group : groups) {
-				
-				
+
+
 				groupsId.add(group.getId());
-				
+
 			}
 			
 	

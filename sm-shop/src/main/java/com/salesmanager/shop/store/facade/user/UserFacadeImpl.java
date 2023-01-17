@@ -416,7 +416,7 @@ public class UserFacadeImpl implements UserFacade {
 				}
 			}
 			boolean isActive = userModel.isActive();
-			List<Group> originalGroups = userModel.getGroups();
+			Set<Group> originalGroups = userModel.getGroups();
 			Group superadmin = originalGroups.stream()
 					.filter(group -> Constants.GROUP_SUPERADMIN.equals(group.getGroupName())).findAny().orElse(null);
 

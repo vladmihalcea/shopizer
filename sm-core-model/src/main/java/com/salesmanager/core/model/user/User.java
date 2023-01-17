@@ -1,8 +1,6 @@
 package com.salesmanager.core.model.user;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -87,7 +85,7 @@ public class User extends SalesManagerEntity<Long, User> implements Auditable {
 		org.hibernate.annotations.CascadeType.REPLICATE
 		
 	})
-	private List<Group> groups = new ArrayList<Group>();
+	private Set<Group> groups = new HashSet<>();
 	
 	@NotEmpty
 	@Email
@@ -276,11 +274,11 @@ public class User extends SalesManagerEntity<Long, User> implements Auditable {
 		this.answer3 = answer3;
 	}
 
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
+	public void setGroups(Collection<Group> groups) {
+		this.groups = groups instanceof Set ? (Set<Group>) groups : new HashSet<>(groups);
 	}
 
-	public List<Group> getGroups() {
+	public Set<Group> getGroups() {
 		return groups;
 	}
 
