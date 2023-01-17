@@ -71,7 +71,7 @@ public class ProductReview extends SalesManagerEntity<Long, ProductReview> imple
 	@JoinColumn(name="CUSTOMERS_ID")
 	private Customer customer;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="PRODUCT_ID")
 	private Product product;
 

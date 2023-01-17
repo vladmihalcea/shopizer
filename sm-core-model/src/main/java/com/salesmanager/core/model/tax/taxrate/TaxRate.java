@@ -102,7 +102,7 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 	@JoinColumn(name="COUNTRY_ID", nullable=false, updatable=true)
 	private Country country;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="ZONE_ID", nullable=true, updatable=true)
 	private Zone zone;
 

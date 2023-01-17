@@ -70,7 +70,7 @@ public class CustomerReview extends SalesManagerEntity<Long, CustomerReview> imp
 	
 
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="REVIEWED_CUSTOMER_ID")
 	private Customer reviewedCustomer;
 
