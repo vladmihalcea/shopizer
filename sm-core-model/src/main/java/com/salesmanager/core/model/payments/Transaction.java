@@ -71,12 +71,12 @@ public class Transaction extends SalesManagerEntity<Long, Transaction> implement
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date transactionDate;
 	
-	@Column(name="TRANSACTION_TYPE")
-	@Enumerated(value = EnumType.STRING)
+	@Column(name="TRANSACTION_TYPE", columnDefinition = "tinyint")
+	@Enumerated
 	private TransactionType transactionType;
 	
-	@Column(name="PAYMENT_TYPE")
-	@Enumerated(value = EnumType.STRING)
+	@Column(name="PAYMENT_TYPE", columnDefinition = "tinyint")
+	@Enumerated
 	private PaymentType paymentType;
 	
 	@Column(name="DETAILS")

@@ -10,8 +10,8 @@ import com.salesmanager.core.model.payments.CreditCardType;
 @Embeddable
 public class CreditCard {
 	
-	@Column (name ="CARD_TYPE")
-	@Enumerated(value = EnumType.STRING)
+	@Column (name ="CARD_TYPE", columnDefinition = "tinyint")
+	@Enumerated
 	private CreditCardType cardType;
 	
 	@Column (name ="CC_OWNER")

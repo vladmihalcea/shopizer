@@ -42,8 +42,8 @@ public class Order extends SalesManagerEntity<Long, Order> {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TABLE_GEN")
 	private Long id;
 	
-	@Column (name ="ORDER_STATUS")
-	@Enumerated(value = EnumType.STRING)
+	@Column (name ="ORDER_STATUS", columnDefinition = "tinyint")
+	@Enumerated
 	private OrderStatus status;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -76,16 +76,16 @@ public class Order extends SalesManagerEntity<Long, Order> {
 	@Column(name = "CART_CODE", nullable=true)
 	private String shoppingCartCode;
 
-	@Column (name ="CHANNEL")
-	@Enumerated(value = EnumType.STRING)
+	@Column (name ="CHANNEL", columnDefinition = "tinyint")
+	@Enumerated
 	private OrderChannel channel;
 
-	@Column (name ="ORDER_TYPE")
-	@Enumerated(value = EnumType.STRING)
+	@Column (name ="ORDER_TYPE", columnDefinition = "tinyint")
+	@Enumerated
 	private OrderType orderType = OrderType.ORDER;
 
-	@Column (name ="PAYMENT_TYPE")
-	@Enumerated(value = EnumType.STRING)
+	@Column (name ="PAYMENT_TYPE", columnDefinition = "tinyint")
+	@Enumerated
 	private PaymentType paymentType;
 	
 	@Column (name ="PAYMENT_MODULE_CODE")

@@ -65,8 +65,8 @@ public class Customer extends SalesManagerEntity<Long, Customer> implements Audi
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "customer")
 	private Set<CustomerAttribute> attributes = new HashSet<CustomerAttribute>();
 	
-	@Column(name="CUSTOMER_GENDER", length=1, nullable=true)
-	@Enumerated(value = EnumType.STRING)
+	@Column(name="CUSTOMER_GENDER", columnDefinition = "tinyint", nullable=true)
+	@Enumerated
 	private CustomerGender gender;
 
 

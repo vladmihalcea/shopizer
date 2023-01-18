@@ -27,8 +27,9 @@ public class OrderStatusHistory implements Serializable {
 	@ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ORDER_ID", nullable = false)
 	private Order order;
-	
-	@Enumerated(value = EnumType.STRING)
+
+	@Column(columnDefinition = "tinyint")
+	@Enumerated
 	private OrderStatus status;
 	
 	@Temporal(TemporalType.TIMESTAMP)

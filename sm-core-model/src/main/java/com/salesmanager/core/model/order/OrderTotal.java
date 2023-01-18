@@ -44,12 +44,12 @@ public class OrderTotal extends SalesManagerEntity<Long, OrderTotal> {
 	@Column (name ="MODULE", length=60 , nullable=true )
 	private String module;
 	
-	@Column (name ="ORDER_VALUE_TYPE")
-	@Enumerated(value = EnumType.STRING)
+	@Column (name ="ORDER_VALUE_TYPE", columnDefinition = "tinyint")
+	@Enumerated
 	private OrderValueType orderValueType = OrderValueType.ONE_TIME;
 	
-	@Column (name ="ORDER_TOTAL_TYPE")
-	@Enumerated(value = EnumType.STRING)
+	@Column (name ="ORDER_TOTAL_TYPE", columnDefinition = "tinyint")
+	@Enumerated
 	private OrderTotalType orderTotalType = null;
 	
 	@Column (name ="SORT_ORDER", nullable=false)

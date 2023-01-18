@@ -43,8 +43,8 @@ public class Optin extends SalesManagerEntity<Long, Optin> implements Serializab
 	@Column (name ="END_DATE")
 	private Date endDate;
 	
-	@Column(name="TYPE", nullable=false)
-	@Enumerated(value = EnumType.STRING)
+	@Column(name="TYPE", columnDefinition = "tinyint", nullable=false)
+	@Enumerated
 	private OptinType optinType;
 	
 	@ManyToOne(targetEntity = MerchantStore.class, fetch = FetchType.LAZY)

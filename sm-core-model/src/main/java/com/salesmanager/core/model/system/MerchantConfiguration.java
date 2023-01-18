@@ -69,8 +69,8 @@ public class MerchantConfiguration extends SalesManagerEntity<Long, MerchantConf
   @Type(type = "org.hibernate.type.TextType")
   private String value;
 
-  @Column(name = "TYPE")
-  @Enumerated(value = EnumType.STRING)
+  @Column(name = "TYPE", columnDefinition = "tinyint")
+  @Enumerated
   private MerchantConfigurationType merchantConfigurationType =
       MerchantConfigurationType.INTEGRATION;
 

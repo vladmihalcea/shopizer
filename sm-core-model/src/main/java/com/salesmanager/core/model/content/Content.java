@@ -71,14 +71,14 @@ public class Content extends SalesManagerEntity<Long, Content> implements Serial
 	@Column(name = "LINK_TO_MENU")
 	private boolean linkToMenu;
 
-	@Column(name = "CONTENT_POSITION", length=10, nullable=true)
-	@Enumerated(value = EnumType.STRING)
+	@Column(name = "CONTENT_POSITION", columnDefinition = "tinyint", nullable=true)
+	@Enumerated
 	private ContentPosition contentPosition;
 	
 	//Used for grouping
 	//BOX, SECTION, PAGE
-	@Column(name = "CONTENT_TYPE", length=10, nullable=true)
-	@Enumerated(value = EnumType.STRING)
+	@Column(name = "CONTENT_TYPE", columnDefinition = "tinyint", nullable=true)
+	@Enumerated
 	private ContentType contentType; 
 	
 	@Column(name = "SORT_ORDER")
