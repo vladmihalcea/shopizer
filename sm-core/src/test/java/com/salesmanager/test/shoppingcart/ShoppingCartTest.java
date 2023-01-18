@@ -90,7 +90,10 @@ public class ShoppingCartTest extends com.salesmanager.test.common.AbstractSales
 	public void performanceIssuesTest() {
 		List<Event> events = hypersistenceOptimizer.getEvents();
 
-		//assertTrue(events.isEmpty());
+		Map<Class, List<Event>> eventByEventTypeMap = events.stream()
+			.collect(Collectors.groupingBy(Event::getClass));
+
+		//assertTrue(eventByEventTypeMap.isEmpty());
 	}
 
 	@Test
