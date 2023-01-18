@@ -88,6 +88,16 @@ public class CustomerOptionValue extends SalesManagerEntity<Long, CustomerOption
 	public void setDescriptions(Set<CustomerOptionValueDescription> descriptions) {
 		this.descriptions = descriptions;
 	}
+	
+	public void addCustomerOptionValueDescription(CustomerOptionValueDescription customerOptionValueDescription) {
+		descriptions.add(customerOptionValueDescription);
+	    customerOptionValueDescription.setCustomerOptionValue(this);
+	}
+	
+	public void removeCustomerOptionValueDescription(CustomerOptionValueDescription customerOptionValueDescription) {
+		descriptions.remove(customerOptionValueDescription);
+	    customerOptionValueDescription.setCustomerOptionValue(null);
+	}
 
 	public MerchantStore getMerchantStore() {
 		return merchantStore;

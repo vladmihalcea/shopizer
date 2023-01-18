@@ -242,6 +242,16 @@ public class ProductAvailability extends SalesManagerEntity<Long, ProductAvailab
 	public void setPrices(Set<ProductPrice> prices) {
 		this.prices = prices;
 	}
+	
+	public void addProductPrice(ProductPrice productPrice) {
+		prices.add(productPrice);
+	    productPrice.setProductAvailability(this);
+	}
+	
+	public void removeProductPrice(ProductPrice productPrice) {
+		prices.remove(productPrice);
+	    productPrice.setProductAvailability(null);
+	}
 
 	public MerchantStore getMerchantStore() {
 		return merchantStore;

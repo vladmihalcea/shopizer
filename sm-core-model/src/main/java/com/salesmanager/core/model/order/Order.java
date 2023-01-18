@@ -261,6 +261,16 @@ public class Order extends SalesManagerEntity<Long, Order> {
 	public void setOrderProducts(Set<OrderProduct> orderProducts) {
 		this.orderProducts = orderProducts;
 	}
+	
+	public void addOrderProduct(OrderProduct orderProduct) {
+		orderProducts.add(orderProduct);
+	    orderProduct.setOrder(this);
+	}
+	
+	public void removeOrderProduct(OrderProduct orderProduct) {
+		orderProducts.remove(orderProduct);
+	    orderProduct.setOrder(null);
+	}
 
 	public Set<OrderTotal> getOrderTotal() {
 		return orderTotal;
@@ -268,6 +278,16 @@ public class Order extends SalesManagerEntity<Long, Order> {
 
 	public void setOrderTotal(Set<OrderTotal> orderTotal) {
 		this.orderTotal = orderTotal;
+	}
+	
+	public void addOrderTotal(OrderTotal total) {
+		orderTotal.add(total);
+		total.setOrder(this);
+	}
+	
+	public void removeOrderTotal(OrderTotal total) {
+		orderTotal.remove(total);
+		total.setOrder(null);
 	}
 
 	public Set<OrderStatusHistory> getOrderHistory() {
@@ -278,6 +298,15 @@ public class Order extends SalesManagerEntity<Long, Order> {
 		this.orderHistory = orderHistory;
 	}
 
+	public void addOrderStatusHistory(OrderStatusHistory orderStatusHistory) {
+		orderHistory.add(orderStatusHistory);
+	    orderStatusHistory.setOrder(this);
+	}
+	
+	public void removeOrderStatusHistory(OrderStatusHistory orderStatusHistory) {
+		orderHistory.remove(orderStatusHistory);
+	    orderStatusHistory.setOrder(null);
+	}
 
 	public void setDelivery(Delivery delivery) {
 		this.delivery = delivery;
@@ -380,6 +409,16 @@ public class Order extends SalesManagerEntity<Long, Order> {
 
 	public void setOrderAttributes(Set<OrderAttribute> orderAttributes) {
 		this.orderAttributes = orderAttributes;
+	}
+	
+	public void addOrderAttribute(OrderAttribute orderAttribute) {
+		orderAttributes.add(orderAttribute);
+	    orderAttribute.setOrder(this);
+	}
+	
+	public void removeOrderAttribute(OrderAttribute orderAttribute) {
+		orderAttributes.remove(orderAttribute);
+	    orderAttribute.setOrder(null);
 	}
 	
 	public String getShoppingCartCode() {

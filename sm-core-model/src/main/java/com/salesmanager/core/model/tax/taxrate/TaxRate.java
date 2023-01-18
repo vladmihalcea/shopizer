@@ -191,7 +191,15 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 		this.descriptions = descriptions;
 	}
 
-
+	public void addTaxRateDescription(TaxRateDescription taxRateDescription) {
+		descriptions.add(taxRateDescription);
+	    taxRateDescription.setTaxRate(this);
+	}
+	
+	public void removeTaxRateDescription(TaxRateDescription taxRateDescription) {
+		descriptions.remove(taxRateDescription);
+	    taxRateDescription.setTaxRate(null);
+	}
 
 	public MerchantStore getMerchantStore() {
 		return merchantStore;
@@ -224,6 +232,16 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 
 	public List<TaxRate> getTaxRates() {
 		return taxRates;
+	}
+	
+	public void addTaxRate(TaxRate taxRate) {
+		taxRates.add(taxRate);
+	    taxRate.setParent(this);
+	}
+	
+	public void removeTaxRate(TaxRate taxRate) {
+		taxRates.remove(taxRate);
+	    taxRate.setParent(null);
 	}
 
 	public void setParent(TaxRate parent) {

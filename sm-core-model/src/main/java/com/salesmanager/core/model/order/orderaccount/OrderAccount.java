@@ -91,4 +91,14 @@ private static final long serialVersionUID = -2429388347536330540L;
 			Set<OrderAccountProduct> orderAccountProducts) {
 		this.orderAccountProducts = orderAccountProducts;
 	}
+	
+	public void addOrderAccountProduct(OrderAccountProduct orderAccountProduct) {
+		orderAccountProducts.add(orderAccountProduct);
+	    orderAccountProduct.setOrderAccount(this);
+	}
+	
+	public void removeOrderAccountProduct(OrderAccountProduct orderAccountProduct) {
+		orderAccountProducts.remove(orderAccountProduct);
+	    orderAccountProduct.setOrderAccount(null);
+	}
 }

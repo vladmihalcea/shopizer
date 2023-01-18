@@ -84,6 +84,16 @@ public class CustomerOption extends SalesManagerEntity<Long, CustomerOption> {
 	public void setDescriptions(Set<CustomerOptionDescription> descriptions) {
 		this.descriptions = descriptions;
 	}
+	
+	public void addCustomerOptionDescription(CustomerOptionDescription customerOptionDescription) {
+		descriptions.add(customerOptionDescription);
+	    customerOptionDescription.setCustomerOption(this);
+	}
+	
+	public void removeCustomerOptionDescription(CustomerOptionDescription customerOptionDescription) {
+		descriptions.remove(customerOptionDescription);
+	    customerOptionDescription.setCustomerOption(null);
+	}
 
 	@Override
 	public Long getId() {

@@ -108,7 +108,16 @@ public class Country extends SalesManagerEntity<Integer, Country> {
 		this.zones = zones;
 	}
 
-
+	public void addZone(Zone zone) {
+		zones.add(zone);
+	    zone.setCountry(this);
+	}
+	
+	public void removeZone(Zone zone) {
+		zones.remove(zone);
+	    zone.setCountry(null);
+	}
+	
 	public GeoZone getGeoZone() {
 		return geoZone;
 	}
@@ -117,12 +126,21 @@ public class Country extends SalesManagerEntity<Integer, Country> {
 		this.geoZone = geoZone;
 	}
 	
-	
 	public Set<CountryDescription> getDescriptions() {
 		return descriptions;
 	}
 
 	public void setDescriptions(Set<CountryDescription> descriptions) {
 		this.descriptions = descriptions;
+	}
+	
+	public void addCountryDescription(CountryDescription countryDescription) {
+		descriptions.add(countryDescription);
+	    countryDescription.setCountry(this);
+	}
+	
+	public void removeCountryDescription(CountryDescription countryDescription) {
+		descriptions.remove(countryDescription);
+	    countryDescription.setCountry(null);
 	}
 }

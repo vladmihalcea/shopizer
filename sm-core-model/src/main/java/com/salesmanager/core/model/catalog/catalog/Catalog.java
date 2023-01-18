@@ -140,6 +140,16 @@ public class Catalog extends SalesManagerEntity<Long, Catalog> implements Audita
 	public void setEntry(Set<CatalogCategoryEntry> entry) {
 		this.entry = entry;
 	}
+	
+	public void addCatalogCategoryEntry(CatalogCategoryEntry categoryEntry) {
+        entry.add(categoryEntry);
+        categoryEntry.setCatalog(this);
+	}
+	
+	public void removeCatalogCategoryEntry(CatalogCategoryEntry categoryEntry) {
+        entry.remove(categoryEntry);
+        categoryEntry.setCatalog(null);
+	}
 
 	public boolean isDefaultCatalog() {
 		return defaultCatalog;

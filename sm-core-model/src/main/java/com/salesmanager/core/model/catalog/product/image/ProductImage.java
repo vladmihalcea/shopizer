@@ -139,6 +139,16 @@ public class ProductImage extends SalesManagerEntity<Long, ProductImage> {
 	public List<ProductImageDescription> getDescriptions() {
 		return descriptions;
 	}
+	
+	public void addProductImageDescription(ProductImageDescription productImageDescription) {
+		descriptions.add(productImageDescription);
+	    productImageDescription.setProductImage(this);
+	}
+	
+	public void removeProductImageDescription(ProductImageDescription productImageDescription) {
+		descriptions.remove(productImageDescription);
+	    productImageDescription.setProductImage(null);
+	}
 
 	public InputStream getImage() {
 		return image;

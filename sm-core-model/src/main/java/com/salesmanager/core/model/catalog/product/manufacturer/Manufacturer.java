@@ -101,6 +101,16 @@ public class Manufacturer extends SalesManagerEntity<Long, Manufacturer> impleme
 	public void setDescriptions(Set<ManufacturerDescription> descriptions) {
 		this.descriptions = descriptions;
 	}
+	
+	public void addManufacturerDescription(ManufacturerDescription manufacturerDescription) {
+		descriptions.add(manufacturerDescription);
+	    manufacturerDescription.setManufacturer(this);
+	}
+	
+	public void removeManufacturerDescription(ManufacturerDescription manufacturerDescription) {
+		descriptions.remove(manufacturerDescription);
+	    manufacturerDescription.setManufacturer(null);
+	}
 
 	public MerchantStore getMerchantStore() {
 		return merchantStore;

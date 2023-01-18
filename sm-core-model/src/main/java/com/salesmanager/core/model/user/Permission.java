@@ -88,8 +88,18 @@ public class Permission extends SalesManagerEntity<Integer, Permission> implemen
 	public void setGroups(Collection<Group> groups) {
 		this.groups = groups instanceof Set ? (Set<Group>) groups : new HashSet<>(groups);
 	}
+	
 	public Set<Group> getGroups() {
 		return groups;
 	}
 
+	public void addGroup(Group group) {
+	    groups.add(group);
+	    group.getPermissions().add(this);
+	}
+	
+	public void removeGroup(Group group) {
+		groups.remove(group);
+		group.getPermissions().remove(this);
+	}
 }

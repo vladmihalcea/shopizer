@@ -338,7 +338,16 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 		this.descriptions = descriptions;
 	}
 
-
+	public void addProductDescription(ProductDescription productDescription) {
+		descriptions.add(productDescription);
+		productDescription.setProduct(this);
+	}
+	
+	public void removeProductDescription(ProductDescription productDescription) {
+		descriptions.remove(productDescription);
+		productDescription.setProduct(null);
+	}
+	
 	public boolean getProductVirtual() {
 		return productVirtual;
 	}
@@ -365,7 +374,15 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 		this.attributes = attributes;
 	}
 
-
+	public void addProductAttribute(ProductAttribute productAttribute) {
+		attributes.add(productAttribute);
+	    productAttribute.setProduct(this);
+	}
+	
+	public void removeProductAttribute(ProductAttribute productAttribute) {
+		attributes.remove(productAttribute);
+	    productAttribute.setProduct(null);
+	}
 
 	public Manufacturer getManufacturer() {
 		return manufacturer;
@@ -392,6 +409,16 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 	public void setAvailabilities(Set<ProductAvailability> availabilities) {
 		this.availabilities = availabilities;
 	}
+	
+	public void addProductAvailability(ProductAvailability productAvailability) {
+		availabilities.add(productAvailability);
+	    productAvailability.setProduct(this);
+	}
+	
+	public void removeProductAvailability(ProductAvailability productAvailability) {
+		availabilities.remove(productAvailability);
+	    productAvailability.setProduct(null);
+	}
 
 	public TaxClass getTaxClass() {
 		return taxClass;
@@ -408,6 +435,16 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 	public void setImages(Set<ProductImage> images) {
 		this.images = images;
 	}
+	
+	public void addProductImage(ProductImage productImage) {
+	    images.add(productImage);
+	    productImage.setProduct(this);
+	}
+	
+	public void removeProductImage(ProductImage productImage) {
+	    images.remove(productImage);
+	    productImage.setProduct(null);
+	}
 
 	public Set<ProductRelationship> getRelationships() {
 		return relationships;
@@ -417,6 +454,15 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 		this.relationships = relationships;
 	}
 
+	public void addProductRelationship(ProductRelationship productRelationship) {
+		relationships.add(productRelationship);
+	    productRelationship.setProduct(this);
+	}
+
+	public void removeProductRelationship(ProductRelationship productRelationship) {
+		relationships.remove(productRelationship);
+	    productRelationship.setProduct(null);
+	}
 
 	public Set<Category> getCategories() {
 		return categories;
@@ -537,6 +583,16 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 
 	public void setVariants(Set<ProductVariant> variants) {
 		this.variants = variants;
+	}
+	
+	public void addProductVariant(ProductVariant productVariant) {
+		variants.add(productVariant);
+	    productVariant.setProduct(this);
+	}
+	
+	public void removeProductVariant(ProductVariant productVariant) {
+		variants.remove(productVariant);
+	    productVariant.setProduct(null);
 	}
 
 	public void setAvailable(boolean available) {

@@ -92,6 +92,16 @@ public class Zone extends SalesManagerEntity<Long, Zone> {
   public void setDescriptons(List<ZoneDescription> descriptions) {
     this.descriptions = descriptions;
   }
+  
+  public void addZoneDescription(ZoneDescription zoneDescription) {
+    descriptions.add(zoneDescription);
+      zoneDescription.setZone(this);
+  }
+  
+  public void removeZoneDescription(ZoneDescription zoneDescription) {
+    descriptions.remove(zoneDescription);
+      zoneDescription.setZone(null);
+  }
 
   public String getName() {
     return name;

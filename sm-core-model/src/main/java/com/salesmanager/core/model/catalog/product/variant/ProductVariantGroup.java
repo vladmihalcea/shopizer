@@ -72,6 +72,15 @@ public class ProductVariantGroup extends SalesManagerEntity<Long, ProductVariant
 		this.images = images;
 	}
 
+	public void addProductVariantImage(ProductVariantImage productVariantImage) {
+		images.add(productVariantImage);
+	    productVariantImage.setProductVariantGroup(this);
+	}
+	
+	public void removeProductVariantImage(ProductVariantImage productVariantImage) {
+		images.remove(productVariantImage);
+	    productVariantImage.setProductVariantGroup(null);
+	}
 
 	public MerchantStore getMerchantStore() {
 		return merchantStore;
@@ -89,5 +98,13 @@ public class ProductVariantGroup extends SalesManagerEntity<Long, ProductVariant
 		this.productVariants = productVariants;
 	}
 
+	public void addProductVariant(ProductVariant productVariant) {
+		productVariants.add(productVariant);
+	    productVariant.setProductVariantGroup(this);
+	}
 
+	public void removeProductVariant(ProductVariant productVariant) {
+		productVariants.remove(productVariant);
+	    productVariant.setProductVariantGroup(null);
+	}
 }

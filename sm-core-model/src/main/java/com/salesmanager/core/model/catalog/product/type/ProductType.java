@@ -111,21 +111,30 @@ public class ProductType extends SalesManagerEntity<Long, ProductType> implement
     this.merchantStore = merchantStore;
   }
 
-public Set<ProductTypeDescription> getDescriptions() {
+  public Set<ProductTypeDescription> getDescriptions() {
 	return descriptions;
 }
 
-public void setDescriptions(Set<ProductTypeDescription> descriptions) {
+  public void setDescriptions(Set<ProductTypeDescription> descriptions) {
 	this.descriptions = descriptions;
 }
 
-public Boolean getVisible() {
-	return visible;
-}
+  public void addProductTypeDescription(ProductTypeDescription productTypeDescription) {
+    descriptions.add(productTypeDescription);
+      productTypeDescription.setProductType(this);
+  }
+  
+  public void removeProductTypeDescription(ProductTypeDescription productTypeDescription) {
+    descriptions.remove(productTypeDescription);
+      productTypeDescription.setProductType(null);
+  }
 
-public void setVisible(Boolean visible) {
-	this.visible = visible;
-}
-
+  public Boolean getVisible() {
+      return visible;
+  }
+  
+  public void setVisible(Boolean visible) {
+      this.visible = visible;
+  }
 
 }

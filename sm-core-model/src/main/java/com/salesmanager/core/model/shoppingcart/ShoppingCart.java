@@ -128,6 +128,16 @@ public class ShoppingCart extends SalesManagerEntity<Long, ShoppingCart> impleme
 		this.lineItems = lineItems;
 	}
 
+	public void addShoppingCartItem(ShoppingCartItem shoppingCartItem) {
+		lineItems.add(shoppingCartItem);
+		shoppingCartItem.setShoppingCart(this);
+	}
+
+	public void removeShoppingCartItem(ShoppingCartItem shoppingCartItem) {
+		lineItems.remove(shoppingCartItem);
+		shoppingCartItem.setShoppingCart(null);
+	}
+
     public String getShoppingCartCode()
     {
         return shoppingCartCode;

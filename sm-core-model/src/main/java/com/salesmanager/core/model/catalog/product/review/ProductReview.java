@@ -137,6 +137,16 @@ public class ProductReview extends SalesManagerEntity<Long, ProductReview> imple
 		this.descriptions = descriptions;
 	}
 	
+	public void addProductReviewDescription(ProductReviewDescription productReviewDescription) {
+		descriptions.add(productReviewDescription);
+	    productReviewDescription.setProductReview(this);
+	}
+	
+	public void removeProductReviewDescription(ProductReviewDescription productReviewDescription) {
+		descriptions.remove(productReviewDescription);
+	    productReviewDescription.setProductReview(null);
+	}
+	
 	@Override
 	public AuditSection getAuditSection() {
 		return audit;

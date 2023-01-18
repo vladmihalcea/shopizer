@@ -115,4 +115,24 @@ public class Language extends SalesManagerEntity<Integer, Language> implements A
       return (this.id == language.getId());
     }
   }
+
+  public void addStoreDefaultLanguage(MerchantStore store) {
+    storesDefaultLanguage.add(store);
+    store.setDefaultLanguage(this);
+  }
+
+  public void removeStoreDefaultLanguage(MerchantStore store) {
+    storesDefaultLanguage.remove(store);
+    store.setDefaultLanguage(null);
+  }
+  
+  public void addStore(MerchantStore store) {
+      stores.add(store);
+      store.getLanguages().add(this);
+  }
+  
+  public void removeStore(MerchantStore store) {
+    stores.remove(store);
+    store.getLanguages().remove(store);
+  }
 }

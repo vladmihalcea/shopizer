@@ -115,6 +115,16 @@ public class ProductOptionValue extends SalesManagerEntity<Long, ProductOptionVa
 		this.descriptions = descriptions;
 	}
 
+	public void addProductOptionValueDescription(ProductOptionValueDescription productOptionValueDescription) {
+		descriptions.add(productOptionValueDescription);
+	    productOptionValueDescription.setProductOptionValue(this);
+	}
+
+	public void removeProductOptionValueDescription(ProductOptionValueDescription productOptionValueDescription) {
+		descriptions.remove(productOptionValueDescription);
+	    productOptionValueDescription.setProductOptionValue(null);
+	}
+
 	public MerchantStore getMerchantStore() {
 		return merchantStore;
 	}

@@ -415,6 +415,16 @@ public class MerchantStore extends SalesManagerEntity<Integer, MerchantStore> im
 		this.stores = stores;
 	}
 
+	public void addMerchantStore(MerchantStore merchantStore) {
+		stores.add(merchantStore);
+	    merchantStore.setParent(this);
+	}
+
+	public void removeMerchantStore(MerchantStore merchantStore) {
+		stores.remove(merchantStore);
+	    merchantStore.setParent(null);
+	}
+
 	public Boolean isRetailer() {
 		return retailer;
 	}

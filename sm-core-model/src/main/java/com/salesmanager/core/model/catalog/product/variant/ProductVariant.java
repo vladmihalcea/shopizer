@@ -204,7 +204,15 @@ public class ProductVariant extends SalesManagerEntity<Long, ProductVariant> imp
 		this.availabilities = availabilities;
 	}
 	
-
+	public void addProductAvailability(ProductAvailability productAvailability) {
+		availabilities.add(productAvailability);
+	    productAvailability.setProductVariant(this);
+	}
+	
+	public void removeProductAvailability(ProductAvailability productAvailability) {
+		availabilities.remove(productAvailability);
+	    productAvailability.setProductVariant(null);
+	}
 
 
 }

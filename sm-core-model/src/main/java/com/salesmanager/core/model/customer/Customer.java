@@ -228,6 +228,16 @@ public class Customer extends SalesManagerEntity<Long, Customer> implements Audi
 	public void setReviews(List<ProductReview> reviews) {
 		this.reviews = reviews;
 	}
+	
+	public void addProductReview(ProductReview productReview) {
+		reviews.add(productReview);
+	    productReview.setCustomer(this);
+	}
+	
+	public void removeProductReview(ProductReview productReview) {
+		reviews.remove(productReview);
+	    productReview.setCustomer(null);
+	}
 
 	public void setMerchantStore(MerchantStore merchantStore) {
 		this.merchantStore = merchantStore;
@@ -298,6 +308,16 @@ public class Customer extends SalesManagerEntity<Long, Customer> implements Audi
 
 	public Set<CustomerAttribute> getAttributes() {
 		return attributes;
+	}
+	
+	public void addCustomerAttribute(CustomerAttribute customerAttribute) {
+		attributes.add(customerAttribute);
+	    customerAttribute.setCustomer(this);
+	}
+	
+	public void removeCustomerAttribute(CustomerAttribute customerAttribute) {
+		attributes.remove(customerAttribute);
+	    customerAttribute.setCustomer(null);
 	}
 
 	public void setGender(CustomerGender gender) {

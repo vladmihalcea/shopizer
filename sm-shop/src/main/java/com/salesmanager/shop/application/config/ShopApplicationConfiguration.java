@@ -184,7 +184,7 @@ public class ShopApplicationConfiguration implements WebMvcConfigurer {
         .map(e -> EntityMappingEvent.class.cast(e))
         .collect(Collectors.groupingBy(Event::getClass));
 
-    //assertTrue(entityMappingEventByEventTypeMap.isEmpty());
+    assertTrue(entityMappingEventByEventTypeMap.isEmpty());
 
     Map<Class, List<Event>> entityMappingEventByEntityClassTypeMap = events.stream()
         .filter(event -> event instanceof EntityMappingEvent)
@@ -192,10 +192,9 @@ public class ShopApplicationConfiguration implements WebMvcConfigurer {
         .sorted(Comparator.comparing(EntityMappingEvent::getEntityName))
         .collect(Collectors.groupingBy(e -> e.getEntityClass(), () -> new LinkedHashMap<Class, List<Event>>(), toList()));
 
-    //assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
+    assertTrue(entityMappingEventByEntityClassTypeMap.isEmpty());
 
-    assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(TableGeneratorEvent.class));
-    assertFalse(entityMappingEventByEntityClassTypeMap.containsKey(EagerFetchingEvent.class));
+    events.clear();
 
     return hypersistenceOptimizer;
   }

@@ -81,6 +81,16 @@ public class ProductVariantImage extends SalesManagerEntity<Long, ProductVariant
 	public void setDescriptions(Set<ProductVariantImageDescription> descriptions) {
 		this.descriptions = descriptions;
 	}
+	
+	public void addProductVariantImageDescription(ProductVariantImageDescription productVariantImageDescription) {
+		descriptions.add(productVariantImageDescription);
+	    productVariantImageDescription.setProductVariantImage(this);
+	}
+	
+	public void removeProductVariantImageDescription(ProductVariantImageDescription productVariantImageDescription) {
+		descriptions.remove(productVariantImageDescription);
+	    productVariantImageDescription.setProductVariantImage(null);
+	}
 
 	public ProductVariantGroup getProductVariantGroup() {
 		return productVariantGroup;

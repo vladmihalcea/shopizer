@@ -27,6 +27,7 @@ import javax.validation.constraints.Pattern;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salesmanager.core.model.catalog.product.availability.ProductAvailability;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
+import com.salesmanager.core.model.shoppingcart.ShoppingCartItem;
 import com.salesmanager.core.utils.CloneUtils;
 
 @Entity
@@ -130,6 +131,16 @@ public class ProductPrice extends SalesManagerEntity<Long, ProductPrice> {
 
 	public void setDescriptions(Set<ProductPriceDescription> descriptions) {
 		this.descriptions = descriptions;
+	}
+
+	public void addProductPriceDescription(ProductPriceDescription productPriceDescription) {
+		descriptions.add(productPriceDescription);
+		productPriceDescription.setProductPrice(this);
+	}
+
+	public void removeProductPriceDescription(ProductPriceDescription productPriceDescription) {
+		descriptions.remove(productPriceDescription);
+		productPriceDescription.setProductPrice(null);
 	}
 
 	public boolean isDefaultPrice() {

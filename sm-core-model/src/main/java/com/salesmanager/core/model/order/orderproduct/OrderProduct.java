@@ -94,12 +94,32 @@ public class OrderProduct extends SalesManagerEntity<Long, OrderProduct> {
 		this.orderAttributes = orderAttributes;
 	}
 
+	public void addOrderProductAttribute(OrderProductAttribute orderProductAttribute) {
+		orderAttributes.add(orderProductAttribute);
+	    orderProductAttribute.setOrderProduct(this);
+	}
+
+	public void removeOrderProductAttribute(OrderProductAttribute orderProductAttribute) {
+		orderAttributes.remove(orderProductAttribute);
+	    orderProductAttribute.setOrderProduct(null);
+	}
+
 	public Set<OrderProductPrice> getPrices() {
 		return prices;
 	}
 
 	public void setPrices(Set<OrderProductPrice> prices) {
 		this.prices = prices;
+	}
+	
+	public void addOrderProductPrice(OrderProductPrice orderProductPrice) {
+		prices.add(orderProductPrice);
+	    orderProductPrice.setOrderProduct(this);
+	}
+	
+	public void removeOrderProductPrice(OrderProductPrice orderProductPrice) {
+		prices.remove(orderProductPrice);
+	    orderProductPrice.setOrderProduct(null);
 	}
 
 	public Set<OrderProductDownload> getDownloads() {
@@ -110,6 +130,15 @@ public class OrderProduct extends SalesManagerEntity<Long, OrderProduct> {
 		this.downloads = downloads;
 	}
 
+	public void addOrderProductDownload(OrderProductDownload orderProductDownload) {
+		downloads.add(orderProductDownload);
+	    orderProductDownload.setOrderProduct(this);
+	}
+	
+	public void removeOrderProductDownload(OrderProductDownload orderProductDownload) {
+		downloads.remove(orderProductDownload);
+	    orderProductDownload.setOrderProduct(null);
+	}
 
 	public void setSku(String sku) {
 		this.sku = sku;

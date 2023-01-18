@@ -148,6 +148,16 @@ public class Content extends SalesManagerEntity<Long, Content> implements Serial
 	public void setDescriptions(List<ContentDescription> descriptions) {
 		this.descriptions = descriptions;
 	}
+	
+	public void addContentDescription(ContentDescription contentDescription) {
+		descriptions.add(contentDescription);
+	    contentDescription.setContent(this);
+	}
+	
+	public void removeContentDescription(ContentDescription contentDescription) {
+		descriptions.remove(contentDescription);
+	    contentDescription.setContent(null);
+	}
 
 	public void setContentType(ContentType contentType) {
 		this.contentType = contentType;

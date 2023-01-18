@@ -118,4 +118,23 @@ public class TaxClass extends SalesManagerEntity<Long, TaxClass> {
 		this.merchantStore = merchantStore;
 	}
 	
+	public void addProduct(Product product) {
+	    products.add(product);
+	    product.setTaxClass(this);
+	}
+	
+	public void removeProduct(Product product) {
+		products.remove(product);
+	    product.setTaxClass(null);
+	}
+	
+	public void addTaxRate(TaxRate taxRate) {
+	    taxRates.add(taxRate);
+	    taxRate.setTaxClass(this);
+	}
+	
+	public void removeTaxRate(TaxRate taxRate) {
+		taxRates.remove(taxRate);
+	    taxRate.setTaxClass(null);
+	}
 }

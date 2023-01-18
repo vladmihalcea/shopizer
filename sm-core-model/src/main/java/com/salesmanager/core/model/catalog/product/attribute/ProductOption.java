@@ -93,6 +93,16 @@ public class ProductOption extends SalesManagerEntity<Long, ProductOption> {
 	public void setDescriptions(Set<ProductOptionDescription> descriptions) {
 		this.descriptions = descriptions;
 	}
+	
+	public void addProductOptionDescription(ProductOptionDescription productOptionDescription) {
+		descriptions.add(productOptionDescription);
+		productOptionDescription.setProductOption(this);
+	}
+	
+	public void removeProductOptionDescription(ProductOptionDescription productOptionDescription) {
+		descriptions.remove(productOptionDescription);
+		productOptionDescription.setProductOption(null);
+	}
 
 	@Override
 	public Long getId() {

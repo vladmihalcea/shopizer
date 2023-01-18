@@ -186,6 +186,16 @@ public class Category extends SalesManagerEntity<Long, Category> implements Audi
         this.categories = categories;
     }
     
+    public void addCategory(Category category) {
+        categories.add(category);
+        category.setParent(this);
+    }
+    
+    public void removeCategory(Category category) {
+        categories.remove(category);
+        category.setParent(null);
+    }
+    
     public CategoryDescription getDescription() {
         if(descriptions!=null && descriptions.size()>0) {
             return descriptions.iterator().next();
@@ -208,6 +218,16 @@ public class Category extends SalesManagerEntity<Long, Category> implements Audi
 
     public void setDescriptions(Set<CategoryDescription> descriptions) {
       this.descriptions = descriptions;
+    }
+    
+    public void addCategoryDescription(CategoryDescription categoryDescription) {
+        descriptions.add(categoryDescription);
+        categoryDescription.setCategory(this);
+    }
+    
+    public void removeCategoryDescription(CategoryDescription categoryDescription) {
+        descriptions.remove(categoryDescription);
+        categoryDescription.setCategory(null);
     }
 
 }

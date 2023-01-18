@@ -137,6 +137,16 @@ public class CustomerReview extends SalesManagerEntity<Long, CustomerReview> imp
 		this.descriptions = descriptions;
 	}
 	
+	public void addCustomerReviewDescription(CustomerReviewDescription customerReviewDescription) {
+		descriptions.add(customerReviewDescription);
+	    customerReviewDescription.setCustomerReview(this);
+	}
+	
+	public void removeCustomerReviewDescription(CustomerReviewDescription customerReviewDescription) {
+		descriptions.remove(customerReviewDescription);
+	    customerReviewDescription.setCustomerReview(null);
+	}
+	
 	@Override
 	public AuditSection getAuditSection() {
 		return audit;
